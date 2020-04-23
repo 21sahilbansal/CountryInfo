@@ -1,16 +1,16 @@
-package com.example.firebaseissuegithub.userInterface.activity
+package com.example.countryinfo.userInterface.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.firebaseissuegithub.R
-import com.example.firebaseissuegithub.base.BaseActivity
-import com.example.firebaseissuegithub.callBack.FragCallBack
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
-import com.example.firebaseissuegithub.userInterface.fragment.IssueFragment
+import com.example.countryinfo.R
+import com.example.countryinfo.base.BaseActivity
+import com.example.countryinfo.callBack.FragCallBack
+import com.example.countryinfo.common.CountryInfoApplication
+import com.example.countryinfo.userInterface.fragment.AllCountriesFragment
 
 class MainActivity : BaseActivity() , FragCallBack {
 init {
-    FireBaseGitHubApplication.getInstance().appComponent.inject(this)
+    CountryInfoApplication.getInstance().appComponent.inject(this)
 
 }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ init {
 
 
     private fun openIssueFragment() {
-        replaceFragment(R.id.container, IssueFragment.newInstance(), IssueFragment.TAG)
+        replaceFragment(R.id.container, AllCountriesFragment, AllCountriesFragment.TAG)
     }
 
 

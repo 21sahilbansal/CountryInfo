@@ -1,30 +1,23 @@
-package com.example.firebaseissuegithub.userInterface.viewModel
+package com.example.countryinfo.userInterface.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
-import com.example.firebaseissuegithub.helper.WrapperDataClass
-import com.example.firebaseissuegithub.model.Comments
-import com.example.firebaseissuegithub.model.Issues
-import com.example.firebaseissuegithub.repository.FireBaseIssueApiService
+import com.example.countryinfo.common.CountryInfoApplication
+import com.example.countryinfo.helper.WrapperDataClass
+import com.example.countryinfo.model.AllCountriesData
+import com.example.countryinfo.repository.CountriesApiServiceProvider
 import javax.inject.Inject
 
 class MainViewModel : ViewModel() {
     @Inject
-    lateinit var apiService: FireBaseIssueApiService
+    lateinit var apiServiceProvider: CountriesApiServiceProvider
 
     init {
-        FireBaseGitHubApplication.getInstance().appComponent.inject(this)
+        CountryInfoApplication.getInstance().appComponent.inject(this)
     }
 
 
-    fun getIssuesList(): MutableLiveData<WrapperDataClass<List<Issues>>>?{
-      return  apiService?.let { it.getFireBaseIosIssues() }
-
+    fun getAllCountriesData(): MutableLiveData<WrapperDataClass<AllCountriesData>>? {
+        return apiServiceProvider?.let { it.getFireBaseIosIssues() }
     }
-
-    fun getCommentList(number : Int): MutableLiveData<WrapperDataClass<List<Comments>>>?{
-        return apiService?.let { it.getFireBaseIosUserComments(number) }
-    }
-
 }

@@ -1,17 +1,11 @@
 package com.example.countryinfo.apiService
 
-import com.example.firebaseissuegithub.model.Comments
-import com.example.firebaseissuegithub.model.Issues
+import com.example.countryinfo.model.AllCountriesData
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 
-interface GitHubAPIservice {
+interface AllCountryApiService {
 
-
-    @GET(ApiConstants.Companion.ApiServiceConstants.Issues)
-    fun getFireBaseIosIssues(): Call<List<Issues>>
-
-    @GET(ApiConstants.Companion.ApiServiceConstants.ISSUES_NUMBER_COMMENT)
-    fun getFireBaseIosUserComments(@Path("number") number: Int): Call<List<Comments>>
+    @GET(ApiConstants.Companion.ApiServiceConstants.ALL_COUNTRIES)
+    fun getAllCountriesData(): Call<AllCountriesData>
 }

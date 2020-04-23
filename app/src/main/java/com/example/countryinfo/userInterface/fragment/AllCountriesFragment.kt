@@ -5,37 +5,37 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.firebaseissuegithub.R
-import com.example.firebaseissuegithub.base.BaseFragment
-import com.example.firebaseissuegithub.callBack.AdpterCallBack
-import com.example.firebaseissuegithub.callBack.FragCallBack
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
-import com.example.firebaseissuegithub.model.Issues
-import com.example.firebaseissuegithub.userInterface.adapter.IssueAdapter
-import com.example.firebaseissuegithub.userInterface.viewModel.MainViewModel
-import kotlinx.android.synthetic.main.issue_layout.*
+import com.example.countryinfo.R
+import com.example.countryinfo.base.BaseFragment
+import com.example.countryinfo.callBack.FragCallBack
+import com.example.countryinfo.common.CountryInfoApplication
+import com.example.countryinfo.model.AllCountriesData
+import com.example.countryinfo.model.CountryData
+import com.example.countryinfo.userInterface.adapter.IssueAdapter
+import com.example.countryinfo.userInterface.viewModel.MainViewModel
+import kotlinx.android.synthetic.main.all_country_fragment.*
 
-class IssueFragment : BaseFragment(),AdpterCallBack {
+class AllCountriesFragment : BaseFragment() {
     private lateinit var fragmentChangeListener: FragCallBack
     private lateinit var viewModel: MainViewModel
-    private val issueData by lazy { ArrayList<Issues>() }
+    private val issueData by lazy { ArrayList<CountryData>() }
     private val issueAdapter by lazy {
-        IssueAdapter(issueData, this)
+        IssueAdapter(issueData)
     }
 
     init {
-        FireBaseGitHubApplication.getInstance().appComponent.inject(this)
+        CountryInfoApplication.getInstance().appComponent.inject(this)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(FireBaseGitHubApplication.getInstance()).create(MainViewModel::class.java)
+        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(CountryInfoApplication.getInstance()).create(MainViewModel::class.java)
         fragmentChangeListener = context as FragCallBack
 
     }
 
     override fun viewInitialization(view: View) {
         showLoadingState(true)
-        viewModel.getIssuesList()?.observe(this, Observer {
+        viewModel.getAllCountriesData()?.observe(this, Observer { it ->
             it.data?.let {
                 setIssueData(it)
             }?: kotlin.run {
@@ -45,10 +45,10 @@ class IssueFragment : BaseFragment(),AdpterCallBack {
         })
     }
 
-    private fun setIssueData(list: List<Issues>) {
+    private fun setIssueData(allCountriesData: AllCountriesData) {
         initAdapter()
         showLoadingState(false)
-        issueData.addAll(list)
+        issueData.addAll(allCountriesData.allCountriesData)
         with(issueAdapter) {
             notifyDataSetChanged()
         }
@@ -62,7 +62,7 @@ class IssueFragment : BaseFragment(),AdpterCallBack {
     }
 
     override fun getLayoutRes(): Int {
-        return R.layout.issue_layout
+        return R.layout.all_country_fragment
     }
 
     override fun showLoadingState(loading: Boolean) {
@@ -79,17 +79,11 @@ class IssueFragment : BaseFragment(),AdpterCallBack {
     }
 
 
-    override fun onIssueClick(number: Int) {
-        fragmentChangeListener.onFragmentChange(
-            CommentFragment.getInstance(number),
-            CommentFragment.TAG
-        )    }
-
 
     companion object {
-        val TAG = IssueFragment::class.java.name
-        fun newInstance(): IssueFragment {
-            return IssueFragment()
+        val TAG = AllCountriesFragment::class.java.name
+        fun newInstance(): AllCountriesFragment {
+            return AllCountriesFragment()
         }
     }
 }

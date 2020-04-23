@@ -1,14 +1,12 @@
-package com.example.firebaseissuegithub.dependncyInjection.modules
+package com.example.countryinfo.dependncyInjection.modules
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
-import com.example.firebaseissuegithub.apiService.ApiConstants
-import com.example.firebaseissuegithub.apiService.ApiConstants.Companion.HEADER_CACHE_CONTROL
-import com.example.firebaseissuegithub.apiService.ApiConstants.Companion.HEADER_PRAGMA
-import com.example.firebaseissuegithub.apiService.GitHubAPIservice
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
-import com.example.firebaseissuegithub.helper.ApplicationUtil
+import com.example.countryinfo.apiService.ApiConstants
+import com.example.countryinfo.apiService.ApiConstants.Companion.HEADER_CACHE_CONTROL
+import com.example.countryinfo.apiService.ApiConstants.Companion.HEADER_PRAGMA
+import com.example.countryinfo.apiService.AllCountryApiService
+import com.example.countryinfo.common.CountryInfoApplication
+import com.example.countryinfo.helper.ApplicationUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -21,12 +19,12 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class ApiModule(val fireBaseGitHubApplication: FireBaseGitHubApplication) {
+class ApiModule(val fireBaseGitHubApplication: CountryInfoApplication) {
 
 
     @Singleton
     @Provides
-    fun provideApplication(): FireBaseGitHubApplication{
+    fun provideApplication(): CountryInfoApplication{
         return fireBaseGitHubApplication
     }
 
@@ -41,12 +39,12 @@ class ApiModule(val fireBaseGitHubApplication: FireBaseGitHubApplication) {
     }
 
     @Provides
-    fun provideApiInterface(retrofit: Retrofit): GitHubAPIservice {
-        return retrofit.create(GitHubAPIservice::class.java)
+    fun provideApiInterface(retrofit: Retrofit): AllCountryApiService {
+        return retrofit.create(AllCountryApiService::class.java)
     }
     @Provides
     fun provideOkHttpClient(
-        context: FireBaseGitHubApplication,
+        context: CountryInfoApplication,
         interceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
@@ -66,7 +64,7 @@ class ApiModule(val fireBaseGitHubApplication: FireBaseGitHubApplication) {
     }
 
 
-    private fun provideCache(context: FireBaseGitHubApplication): Cache? {
+    private fun provideCache(context: CountryInfoApplication): Cache? {
         var cache: Cache? = null
         try {
             cache = Cache(File(context.cacheDir, "http-cache"), 10 * 1024 * 1024)
@@ -77,7 +75,7 @@ class ApiModule(val fireBaseGitHubApplication: FireBaseGitHubApplication) {
     }
 
     private fun provideOfflineCacheInterceptor(
-        context: FireBaseGitHubApplication,
+        context: CountryInfoApplication,
         chain: Interceptor.Chain
     ): Response {
         var request = chain.request()
@@ -98,7 +96,7 @@ class ApiModule(val fireBaseGitHubApplication: FireBaseGitHubApplication) {
     }
 
     private fun provideCacheInterceptor(
-        context: FireBaseGitHubApplication,
+        context: CountryInfoApplication,
         chain: Interceptor.Chain
     ): Response {
         val response = chain.proceed(chain.request())

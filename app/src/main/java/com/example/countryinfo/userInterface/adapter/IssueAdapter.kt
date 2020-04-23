@@ -1,15 +1,13 @@
-package com.example.firebaseissuegithub.userInterface.adapter
+package com.example.countryinfo.userInterface.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firebaseissuegithub.R
-import com.example.firebaseissuegithub.callBack.AdpterCallBack
-import com.example.firebaseissuegithub.model.Issues
-import kotlinx.android.synthetic.main.issue_row_item.view.*
+import com.example.countryinfo.R
+import com.example.countryinfo.model.CountryData
 
-class IssueAdapter(private val items: List<Issues>, private val listener:AdpterCallBack) :
+class IssueAdapter(private val items: List<CountryData>) :
     RecyclerView.Adapter<IssueAdapter.IssueViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = IssueViewHolder(
@@ -26,15 +24,13 @@ class IssueAdapter(private val items: List<Issues>, private val listener:AdpterC
 
     inner class IssueViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(issue: Issues) {
+        fun bind(countriesData : CountryData) {
             with(view) {
                 txt_issue_title.text = issue.title
                 txt_issue.text = issue.body
             }
 
-            view.setOnClickListener {
-                listener.onIssueClick(issue.number)
-            }
+
         }
     }
 }

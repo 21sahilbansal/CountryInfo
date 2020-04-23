@@ -1,15 +1,12 @@
-package com.example.firebaseissuegithub.base
+package com.example.countryinfo.base
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.firebaseissuegithub.R
+import com.example.countryinfo.R
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -31,24 +28,24 @@ abstract class BaseFragment : Fragment() {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    protected fun showErrorDialog(message: String, actionText: String) {
-        val dialog = Dialog(requireContext())
-        with(dialog) {
-            requestWindowFeature(Window.FEATURE_NO_TITLE)
-            setCancelable(false)
-            setContentView(R.layout.error_layout)
-        }
-        val title = dialog.findViewById(R.id.txt_message) as TextView
-
-        val action = dialog.findViewById(R.id.txt_action) as TextView
-        title.text = message
-        action.text = actionText
-        action.setOnClickListener {
-            dialog.dismiss()
-            activity?.onBackPressed()
-        }
-        dialog.show()
-    }
+//    protected fun showErrorDialog(message: String, actionText: String) {
+//        val dialog = Dialog(requireContext())
+//        with(dialog) {
+//            requestWindowFeature(Window.FEATURE_NO_TITLE)
+//            setCancelable(false)
+//            setContentView(R.layout.error_layout)
+//        }
+//        val title = dialog.findViewById(R.id.txt_message) as TextView
+//
+//        val action = dialog.findViewById(R.id.txt_action) as TextView
+//        title.text = message
+//        action.text = actionText
+//        action.setOnClickListener {
+//            dialog.dismiss()
+//            activity?.onBackPressed()
+//        }
+//        dialog.show()
+//    }
 
     protected fun handleError(th: Throwable) {
         val error = when (th) {

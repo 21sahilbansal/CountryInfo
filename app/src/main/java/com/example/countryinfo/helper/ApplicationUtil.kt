@@ -1,9 +1,8 @@
-package com.example.firebaseissuegithub.helper
+package com.example.countryinfo.helper
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
 
 class ApplicationUtil {
     companion object {

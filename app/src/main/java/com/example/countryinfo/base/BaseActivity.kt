@@ -1,4 +1,4 @@
-package com.example.firebaseissuegithub.base
+package com.example.countryinfo.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,16 +1,13 @@
-package com.example.firebaseissuegithub.dependncyInjection.components
+package com.example.countryinfo.dependncyInjection.components
 
-import android.app.Application
-import android.content.Context
-import com.example.firebaseissuegithub.common.FireBaseGitHubApplication
-import com.example.firebaseissuegithub.dependncyInjection.modules.ApiModule
-import com.example.firebaseissuegithub.repository.FireBaseIssueApiService
-import com.example.firebaseissuegithub.userInterface.activity.MainActivity
-import com.example.firebaseissuegithub.userInterface.fragment.CommentFragment
-import com.example.firebaseissuegithub.userInterface.fragment.IssueFragment
-import com.example.firebaseissuegithub.userInterface.viewModel.MainViewModel
+import com.example.countryinfo.common.CountryInfoApplication
+import com.example.countryinfo.dependncyInjection.modules.ApiModule
+import com.example.countryinfo.repository.CountriesApiServiceProvider
+import com.example.countryinfo.userInterface.activity.MainActivity
+import com.example.countryinfo.userInterface.fragment.AllCountriesFragment
+import com.example.countryinfo.userInterface.viewModel.MainViewModel
+
 import dagger.Component
-import java.security.AccessController.getContext
 import javax.inject.Singleton
 
 @Singleton
@@ -18,9 +15,8 @@ import javax.inject.Singleton
 interface AppComponents {
 
     fun inject (mainViewModel: MainViewModel)
-    fun inject (fireBaseIssueApiService: FireBaseIssueApiService)
-    fun inject (issueFragment: IssueFragment)
-    fun inject (commentFragment: CommentFragment)
-    fun inject (fireBaseGitHubApplication: FireBaseGitHubApplication)
+    fun inject (countriesApiServiceProvider: CountriesApiServiceProvider)
+    fun inject (allCountriesFragment: AllCountriesFragment)
+    fun inject (fireBaseGitHubApplication: CountryInfoApplication)
     fun inject (mainActivity: MainActivity)
 }
