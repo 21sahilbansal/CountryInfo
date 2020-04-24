@@ -5,4 +5,5 @@
     <string name="close">Close</string>
     <string name="error_unauthorized">User Not Authorised</string>
     <string name="error_server">Something went wrong. Please try later</string>
+    <string name="enter_isocode2_of_the_country">Enter ISOCode2 of the country</string>
 </resources>

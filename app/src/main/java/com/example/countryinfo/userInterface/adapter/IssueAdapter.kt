@@ -31,7 +31,12 @@ class IssueAdapter(private val countryList: List<CountryData>) :
                 country_name_tv.text =countriesData.name
                 country_capital_tv.text = countriesData.capital
                 country_currency_tv.text = countriesData?.currencies?.get(0)?.name
-                country_flag_image_view.text = (Html.fromHtml(countriesData.flagImage))
+                try{
+                Html.fromHtml(countriesData?.flagImage)?.let {it -> country_flag_image_view.text = it  }
+                }
+                catch (exception : Exception){
+
+                }
             }
         }
     }

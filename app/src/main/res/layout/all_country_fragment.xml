@@ -4,125 +4,127 @@
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+   >
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        shimmer:duration="800">
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                shimmer:duration="800">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
+                    <include layout="@layout/place_holder_shimmer" />
 
-            <include layout="@layout/place_holder_shimmer" />
-        </LinearLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
+                    <include layout="@layout/place_holder_shimmer" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
 
-    <TextView
-        android:id="@+id/sugesstion_tv"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/gray"
-        android:text="Please enter  ISOCode2 of the country"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold|italic"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/sugesstion_tv"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/gray"
+                android:text="Please enter  ISOCode2 of the country"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold|italic"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/coutry_search_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
-        android:weightSum="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sugesstion_tv">
+            <LinearLayout
+                android:id="@+id/coutry_search_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                android:weightSum="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sugesstion_tv">
 
-        <EditText
-            android:id="@+id/country_search_etv"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_weight="1"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:foregroundGravity="center"
-            android:hint="Enter ISOCode2 of the country"
-            android:inputType="textCapCharacters"
-            android:maxLength="2"
-            android:outlineProvider="bounds"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"></EditText>
+                <EditText
+                    android:id="@+id/country_search_etv"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:foregroundGravity="center"
+                    android:hint="@string/enter_isocode2_of_the_country"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="2"
+                    android:outlineProvider="bounds"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Search Country"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/country_search_etv" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Search Country"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/country_search_etv" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/country_item_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/coutry_search_ll">
+            <LinearLayout
+                android:id="@+id/country_item_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/coutry_search_ll">
 
-        <include layout="@layout/item_country_detail" />
-    </LinearLayout>
+                <include layout="@layout/item_country_detail" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/allc_tv"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:background="@color/gray"
-        android:text="Below is the list of all countries information "
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold|italic"
-        android:visibility="invisible"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_item_container" />
+            <TextView
+                android:id="@+id/allc_tv"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@color/gray"
+                android:text="Below is the list of all countries information "
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold|italic"
+                android:visibility="invisible"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/country_item_container" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parent_recycler"
@@ -137,5 +139,6 @@
         app:layout_constraintTop_toBottomOf="@+id/allc_tv"
         tools:itemCount="10"
         tools:listitem="@layout/item_country_detail" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
