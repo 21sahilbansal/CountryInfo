@@ -85,12 +85,12 @@
             tool:text="Vehicle Status"></TextView>
 
 
-        <ImageView
+        <TextView
             android:id="@+id/country_flag_image_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/country_capital"></ImageView>
+            app:layout_constraintTop_toBottomOf="@id/country_capital"></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

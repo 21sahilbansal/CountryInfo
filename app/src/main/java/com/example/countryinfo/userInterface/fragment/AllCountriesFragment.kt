@@ -11,6 +11,7 @@ import com.example.countryinfo.callBack.FragCallBack
 import com.example.countryinfo.common.CountryInfoApplication
 import com.example.countryinfo.model.AllCountriesData
 import com.example.countryinfo.model.CountryData
+import com.example.countryinfo.userInterface.activity.MainActivity
 import com.example.countryinfo.userInterface.adapter.IssueAdapter
 import com.example.countryinfo.userInterface.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.all_country_fragment.*
@@ -48,6 +49,13 @@ class AllCountriesFragment : BaseFragment() {
     private fun setIssueData(allCountriesData: AllCountriesData) {
         initAdapter()
         showLoadingState(false)
+        for (countries in allCountriesData.allCountriesData){
+          for(countryFlag in MainActivity.allCountryFlagData.countryFlagData){
+              if(countries.alpha2Code.equals(countryFlag.code)){
+                  countries.flagImage = countryFlag.unicode
+              }
+          }
+        }
         issueData.addAll(allCountriesData.allCountriesData)
         with(issueAdapter) {
             notifyDataSetChanged()

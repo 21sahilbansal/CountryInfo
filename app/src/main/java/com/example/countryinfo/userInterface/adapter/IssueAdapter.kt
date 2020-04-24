@@ -1,11 +1,13 @@
 package com.example.countryinfo.userInterface.adapter
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countryinfo.R
 import com.example.countryinfo.model.CountryData
+import com.example.countryinfo.userInterface.activity.MainActivity
 import kotlinx.android.synthetic.main.item_country_detail.view.*
 
 class IssueAdapter(private val countryList: List<CountryData>) :
@@ -30,7 +32,7 @@ class IssueAdapter(private val countryList: List<CountryData>) :
                 country_name_tv.text =countriesData.name
                 country_capital_tv.text = countriesData.capital
                 country_currency_tv.text = countriesData?.currencies?.get(0)?.name
-                country_flag_image_view.
+                country_flag_image_view.text = (Html.fromHtml(countriesData.flagImage))
             }
         }
     }

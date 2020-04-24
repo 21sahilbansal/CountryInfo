@@ -1,5 +1,7 @@
 package com.example.countryinfo.model
 
+import android.graphics.drawable.Drawable
+
 data class CountryData(
     var alpha2Code: String?,
     var alpha3Code: String?,
@@ -24,5 +26,6 @@ data class CountryData(
     var subregion: String?,
     var timezones: List<String?>?,
     var topLevelDomain: List<String?>?,
-    var translations: Translations?
+    var translations: Translations?,
+    var flagImage : String?
 )
