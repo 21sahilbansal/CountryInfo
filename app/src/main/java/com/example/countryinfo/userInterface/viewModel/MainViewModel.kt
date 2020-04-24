@@ -11,12 +11,9 @@ import javax.inject.Inject
 class MainViewModel : ViewModel() {
     @Inject
     lateinit var apiServiceProvider: CountriesApiServiceProvider
-
     init {
-        CountryInfoApplication.getInstance().appComponent.inject(this)
+        CountryInfoApplication.getAppInstance().appComponent.inject(this)
     }
-
-
     fun getAllCountriesData(): MutableLiveData<WrapperDataClass<AllCountriesData>>? {
         return apiServiceProvider?.let { it.getAllCountiresList() }
     }

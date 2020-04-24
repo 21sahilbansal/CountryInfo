@@ -1,7 +1,5 @@
 package com.example.countryinfo.model
 
-import android.graphics.drawable.Drawable
-
 data class CountryData(
     var alpha2Code: String?,
     var alpha3Code: String?,

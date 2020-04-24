@@ -12,23 +12,26 @@ import com.google.gson.Gson
 
 class MainActivity : BaseActivity(), FragCallBack {
     init {
-        CountryInfoApplication.getInstance().appComponent.inject(this)
+        CountryInfoApplication.getAppInstance().appComponent.inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        openAllCountriesFragment()
         getVehiclesFlagData()
+        openAllCountriesFragment()
     }
+
     private fun getVehiclesFlagData() {
         val jsonString = resources.openRawResource(R.raw.all_countrues_flag)
             .bufferedReader().use { it.readText() }
         convertToGsonObjects(jsonString)
     }
+
     private fun convertToGsonObjects(jsonString: String) {
         var gson = Gson()
         allCountryFlagData = gson.fromJson(jsonString, AllCountryFlagData::class.java)
     }
+
     override fun getLayoutRes() = R.layout.activity_main
 
 
@@ -40,13 +43,11 @@ class MainActivity : BaseActivity(), FragCallBack {
         )
     }
 
-
     override fun onFragmentChange(fragment: Fragment, tag: String) {
         replaceFragment(R.id.container, fragment, tag, true)
     }
 
-    companion object{
-        lateinit var  allCountryFlagData : AllCountryFlagData
-
+    companion object {
+        var allCountryFlagData: AllCountryFlagData? = null
     }
 }

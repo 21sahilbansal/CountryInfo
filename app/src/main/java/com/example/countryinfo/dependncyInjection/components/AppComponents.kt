@@ -13,10 +13,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [ApiModule :: class])
 interface AppComponents {
-
     fun inject (mainViewModel: MainViewModel)
     fun inject (countriesApiServiceProvider: CountriesApiServiceProvider)
     fun inject (allCountriesFragment: AllCountriesFragment)
-    fun inject (fireBaseGitHubApplication: CountryInfoApplication)
+    fun inject (countryInfoApplication : CountryInfoApplication)
     fun inject (mainActivity: MainActivity)
 }

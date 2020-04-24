@@ -2,13 +2,11 @@ package com.example.countryinfo.common
 
 import android.app.Application
 import com.example.countryinfo.dependncyInjection.components.AppComponents
+import com.example.countryinfo.dependncyInjection.components.DaggerAppComponents
 import com.example.countryinfo.dependncyInjection.modules.ApiModule
 
 class CountryInfoApplication : Application() {
-
-    lateinit var  appComponent : AppComponents
-
-
+    lateinit var appComponent: AppComponents
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -16,12 +14,10 @@ class CountryInfoApplication : Application() {
         appComponent.inject(this)
     }
 
-    companion object{
-        lateinit var instance : CountryInfoApplication
-        fun getInstance() :CountryInfoApplication{
+    companion object {
+        lateinit var instance: CountryInfoApplication
+        fun getAppInstance(): CountryInfoApplication {
             return instance
         }
     }
-
-
 }

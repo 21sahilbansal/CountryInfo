@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countryinfo.R
 import com.example.countryinfo.model.CountryData
-import com.example.countryinfo.userInterface.activity.MainActivity
 import kotlinx.android.synthetic.main.item_country_detail.view.*
 
 class IssueAdapter(private val countryList: List<CountryData>) :

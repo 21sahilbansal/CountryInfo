@@ -1,10 +1,10 @@
 package com.example.countryinfo.dependncyInjection.modules
 
 import android.util.Log
+import com.example.countryinfo.apiService.AllCountryApiService
 import com.example.countryinfo.apiService.ApiConstants
 import com.example.countryinfo.apiService.ApiConstants.Companion.HEADER_CACHE_CONTROL
 import com.example.countryinfo.apiService.ApiConstants.Companion.HEADER_PRAGMA
-import com.example.countryinfo.apiService.AllCountryApiService
 import com.example.countryinfo.common.CountryInfoApplication
 import com.example.countryinfo.helper.ApplicationUtil
 import dagger.Module
@@ -19,19 +19,19 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class ApiModule(val fireBaseGitHubApplication: CountryInfoApplication) {
+class ApiModule(val countryInfoApplication: CountryInfoApplication) {
 
 
     @Singleton
     @Provides
-    fun provideApplication(): CountryInfoApplication{
-        return fireBaseGitHubApplication
+    fun provideApplication(): CountryInfoApplication {
+        return countryInfoApplication
     }
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(ApiConstants.GITHUB_BASE_URL)
+            .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .client(client)
@@ -42,6 +42,7 @@ class ApiModule(val fireBaseGitHubApplication: CountryInfoApplication) {
     fun provideApiInterface(retrofit: Retrofit): AllCountryApiService {
         return retrofit.create(AllCountryApiService::class.java)
     }
+
     @Provides
     fun provideOkHttpClient(
         context: CountryInfoApplication,

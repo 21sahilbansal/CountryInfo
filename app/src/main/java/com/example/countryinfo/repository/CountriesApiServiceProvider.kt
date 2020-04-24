@@ -5,6 +5,7 @@ import com.example.countryinfo.apiService.AllCountryApiService
 import com.example.countryinfo.common.CountryInfoApplication
 import com.example.countryinfo.helper.WrapperDataClass
 import com.example.countryinfo.model.AllCountriesData
+import com.example.countryinfo.model.CountryData
 import com.example.countryinfo.network.RetrofitCallBack
 import retrofit2.Call
 import retrofit2.Response
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class CountriesApiServiceProvider @Inject constructor(var allCountryApiService: AllCountryApiService) {
 
     init {
-        CountryInfoApplication.getInstance().appComponent.inject(this)
+        CountryInfoApplication.getAppInstance().appComponent.inject(this)
     }
 
     var mutableLiveData: MutableLiveData<WrapperDataClass<AllCountriesData>> = MutableLiveData()
@@ -21,17 +22,17 @@ class CountriesApiServiceProvider @Inject constructor(var allCountryApiService: 
 
     fun getAllCountiresList(): MutableLiveData<WrapperDataClass<AllCountriesData>> {
         allCountryApiService.getAllCountriesData()
-            .enqueue(object : RetrofitCallBack<AllCountriesData>() {
+            .enqueue(object : RetrofitCallBack<ArrayList<CountryData>>() {
                 override fun handleSuccess(
-                    call: Call<AllCountriesData>?,
-                    response: Response<AllCountriesData>?
+                    call: Call<ArrayList<CountryData>>?,
+                    response: Response<ArrayList<CountryData>>?
                 ) {
                     var issuesDataResponse = response?.body()
-                    allCountryDataWrapper.data = issuesDataResponse
+                    allCountryDataWrapper.data = issuesDataResponse?.let { AllCountriesData(it) }
                     mutableLiveData.postValue(allCountryDataWrapper)
                 }
 
-                override fun handleFailure(call: Call<AllCountriesData>?, t: Throwable?) {
+                override fun handleFailure(call: Call<ArrayList<CountryData>>?, t: Throwable?) {
                     allCountryDataWrapper.throwable = t
                     mutableLiveData.postValue(allCountryDataWrapper)
                 }
