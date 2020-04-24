@@ -17,11 +17,9 @@ class CountriesApiServiceProvider @Inject constructor(var allCountryApiService: 
     }
 
     var mutableLiveData: MutableLiveData<WrapperDataClass<AllCountriesData>> = MutableLiveData()
-
-
     var allCountryDataWrapper = WrapperDataClass<AllCountriesData>()
 
-    fun getFireBaseIosIssues(): MutableLiveData<WrapperDataClass<AllCountriesData>> {
+    fun getAllCountiresList(): MutableLiveData<WrapperDataClass<AllCountriesData>> {
         allCountryApiService.getAllCountriesData()
             .enqueue(object : RetrofitCallBack<AllCountriesData>() {
                 override fun handleSuccess(
@@ -40,7 +38,6 @@ class CountriesApiServiceProvider @Inject constructor(var allCountryApiService: 
             })
         return mutableLiveData
     }
-
 
 }
 

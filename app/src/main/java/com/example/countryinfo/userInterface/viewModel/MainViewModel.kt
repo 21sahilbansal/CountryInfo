@@ -18,6 +18,6 @@ class MainViewModel : ViewModel() {
 
 
     fun getAllCountriesData(): MutableLiveData<WrapperDataClass<AllCountriesData>>? {
-        return apiServiceProvider?.let { it.getFireBaseIosIssues() }
+        return apiServiceProvider?.let { it.getAllCountiresList() }
     }
 }
